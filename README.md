@@ -6,7 +6,7 @@ A list of references about unity technique that I'm interested or I think it's u
 
 ## Index
 1. Visual
-1. Renderer Feature
-   1. URP
-      - [Kawase Blur](https://github.com/tomc128/urp-kawase-blur?tab=readme-ov-file)
+   1. Renderer Feature
+      1. URP
+         - [Kawase Blur](https://github.com/tomc128/urp-kawase-blur?tab=readme-ov-file)
 
