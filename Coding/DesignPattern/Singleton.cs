@@ -1,4 +1,4 @@
-// from https://github.com/UnityTechnologies/InputSystem_Warriors
+// modify from https://github.com/UnityTechnologies/InputSystem_Warriors
 using UnityEngine;
 
 /// <summary>
@@ -6,7 +6,7 @@ using UnityEngine;
 ///   such as `T myT = new T();`
 /// To prevent that, add `protected T () {}` to your singleton class.
 /// </summary>
-public class Singleton<T> : MonoBehaviour where T : MonoBehaviour
+public class SingletonComponent<T> : MonoBehaviour where T : MonoBehaviour
 {
     private static T _instance;
 
@@ -18,7 +18,7 @@ public class Singleton<T> : MonoBehaviour where T : MonoBehaviour
         {
             if (applicationIsQuitting)
             {
-                Debug.LogWarning("[Singleton] Instance '" + typeof(T) +
+                Debug.LogWarning("[SingletonComponent] Instance '" + typeof(T) +
                     "' already destroyed on application quit." +
                     " Won't create again - returning null.");
                 return null;
@@ -28,29 +28,21 @@ public class Singleton<T> : MonoBehaviour where T : MonoBehaviour
             {
                 if (_instance == null)
                 {
-                    _instance = (T)FindObjectOfType(typeof(T));
+                    var found = FindObjectsOfType(typeof(T));
 
-                    if (FindObjectsOfType(typeof(T)).Length > 1)
+                    if (found.Length == 0)
                     {
-                        Debug.LogError("[Singleton] Something went really wrong " +
-                            " - there should never be more than 1 singleton!" +
-                            " Reopening the scene might fix it.");
-                        return _instance;
+                        Debug.LogError($"[SingletonComponent]: Something went really wrong - there is no {typeof(T)} singleton created!");
+                        return null;
                     }
-
-                    if (_instance == null)
+                    else if (found.Length > 1)
                     {
-                        GameObject singleton = new GameObject();
-                        _instance = singleton.AddComponent<T>();
-                        singleton.name = "(singleton) " + typeof(T).ToString();
-
-                        Debug.Log("[Singleton] An instance of " + typeof(T) +
-                            " is needed in the scene, so '" + singleton +
-                            "' was created.");
+                        Debug.LogError($"[SingletonComponent]: Something went really wrong - there should never be more than 1 {typeof(T)} singleton!");
+                        return null;
                     }
-                    else
+                    else if (found.Length == 1)
                     {
-                        //Debug.Log("[Singleton] Using instance already created: " + _instance.gameObject.name);
+                        return (T)found[0];
                     }
                 }
 
@@ -76,7 +68,7 @@ public class Singleton<T> : MonoBehaviour where T : MonoBehaviour
     private static bool applicationIsQuitting = false;
     /// <summary>
     /// When Unity quits, it destroys objects in a random order.
-    /// In principle, a Singleton is only destroyed when application quits.
+    /// In principle, a SingletonComponent is only destroyed when application quits.
     /// If any script calls Instance after it have been destroyed, 
     ///   it will create a buggy ghost object that will stay on the Editor scene
     ///   even after stopping playing the Application. Really bad!
