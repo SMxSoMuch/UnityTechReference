@@ -2,21 +2,16 @@
 
 A list of references about unity technique that I'm interested or I think it's useful.
 
-[MD Editor](https://dillinger.io/), [Syntax](https://github.com/darsaveli/Readme-Markdown-Syntax)
+[MD Editor](https://dillinger.io/), [Syntax](https://github.com/darsaveli/Readme-Markdown-Syntax), [Markdown Live Preview](https://markdownlivepreview.com/)
 
 ## Index
 1. Coding
-  1. Design Pattern
-     - [Singleton (MonoBehaviour)](https://github.com/SMxSoMuch/UnityTechReference/blob/main/Coding/DesignPattern/Singleton.cs)
-1. Visual
-   1. Renderer Feature
-      1. URP
-         - [Kawase Blur](https://github.com/tomc128/urp-kawase-blur?tab=readme-ov-file)
-
-### Ordered
-
-1. Item 1
-2. Item 2
-3. Item 3
-    1. Item 3a
-    2. Item 3b
+    - Design Pattern
+        - [Singleton (MonoBehaviour)](https://github.com/SMxSoMuch/UnityTechReference/blob/main/Coding/DesignPattern/Singleton.cs)
+    - VisualStudio
+        - AutoComplete
+            - [[field: SerializeField] public $type$ $name$ { get; private set; }](https://github.com/SMxSoMuch/UnityTechReference/blob/main/Coding/VisualStudio/AutoComplete/SerializeProperty.snippet)
+2. Visual
+    - Renderer Feature
+        - URP
+            - [Kawase Blur](https://github.com/tomc128/urp-kawase-blur?tab=readme-ov-file)
